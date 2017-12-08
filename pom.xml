@@ -133,7 +133,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>poc-activemq</finalName>
+		<finalName>activemqpoc</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
