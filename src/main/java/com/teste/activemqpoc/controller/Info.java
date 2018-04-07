@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.HttpRequestHandler;
 
@@ -14,14 +15,17 @@ import com.teste.activemqpoc.consumer.ConsumerActiveMQQueue;
 
 @Component("info")
 public class Info implements HttpRequestHandler {
-    
+
     @Autowired
     private ConsumerActiveMQQueue queue;
 
+    @Value("${ENV_NAME}")
+    private String environment;
+
     @Override
-    public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException,
-                    IOException {
-        String mensagem = queue.getLastMessage();
-        response.getOutputStream().print(mensagem == null ? "Sem mensagens" : mensagem);
+    public void handleRequest(final HttpServletRequest request, final HttpServletResponse response) throws ServletException,
+    IOException {
+        String mensagem = this.queue.getLastMessage();
+        response.getOutputStream().print(mensagem == null ? this.environment + ":Sem mensagens." : mensagem);
     }
 }
