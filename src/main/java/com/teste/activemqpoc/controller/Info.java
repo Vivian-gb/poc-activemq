@@ -26,6 +26,6 @@ public class Info implements HttpRequestHandler {
     public void handleRequest(final HttpServletRequest request, final HttpServletResponse response) throws ServletException,
     IOException {
         String mensagem = this.queue.getLastMessage();
-        response.getOutputStream().print(mensagem == null ? this.environment + ":Sem mensagens." : mensagem);
+        response.getOutputStream().print(mensagem == null ? this.environment + ":Sem mensagens..." : mensagem);
     }
 }
