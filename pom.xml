@@ -21,6 +21,16 @@
 		<java.version>1.6</java.version>
 		<slf4j.version>1.7.12</slf4j.version>
 		<spring.version>4.3.7.RELEASE</spring.version>
+
+		<!-- Report and Quality properties -->
+		<jacoco.plugin.version>0.7.5.201505241946</jacoco.plugin.version>
+
+		<!--building -->
+		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+		<maven.surefire.version>2.17</maven.surefire.version>
+		<maven.assembly.version>2.4.1</maven.assembly.version>
+		<maven.resources.version>2.4</maven.resources.version>
+		<maven.shade.version>2.2</maven.shade.version>
 	</properties>
 
 
@@ -146,6 +156,34 @@
 			<plugin>
 				<artifactId>maven-war-plugin</artifactId>
 				<version>3.0.0</version>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.plugin.version}</version>
+				<executions>
+					<execution>
+						<id>jacoco-pre-site</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+						<configuration>
+							<destfile>${basedir}/target/coverage-reports/jacoco-ut.exec</destfile>
+							<propertyName>surefireArgLine</propertyName>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+						<configuration>
+							<datafile>${basedir}/target/coverage-reports/jacoco-ut.exec</datafile>
+							<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
