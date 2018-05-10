@@ -30,7 +30,7 @@ node {
             sh '''
                 cp target/poc-activemq.war /tomcat/DEV
                 curl "http://vivian:password@tomcat_dev:8080/manager/text/reload?path=/poc-activemq"
-                echo "Deploy to DEV finished"
+                echo "Deploy to DEV finished."
             '''
         }
 
