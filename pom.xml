@@ -32,8 +32,6 @@
 		<maven.resources.version>2.4</maven.resources.version>
 		<maven.shade.version>2.2</maven.shade.version>
 	</properties>
-
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
