@@ -25,7 +25,7 @@ node {
 
         stage('Deploy DEV') {	
             timeout(time: secondsToApproval, unit: 'SECONDS') {
-                input "Deploy to DEV?"
+                input "Deploy to DEV??"
             }
             sh '''
                 cp target/poc-activemq.war /tomcat/DEV
